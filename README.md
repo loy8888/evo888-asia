@@ -88,7 +88,7 @@
       <span style="margin-right:10px;"><i class="fa fa-user"></i><span class="m_uid" id="m_uid_name">&nbsp;&nbsp;&nbsp;Bazuka01</span></span> 
       <span class="badge bg-gray span_d" id="n1" style="display: none;"></span> 
       <span class="badge bg-orange span_d" id="n2" style="display: none;"></span> 
-      <span class="badge bg-aqua span_d" id="n3" title="my current score" style="vertical-align:baseline">My Score: 1000.00</span> 
+      <span class="badge bg-aqua span_d" id="n3" title="my current score" style="vertical-align:baseline">My Score: 10000.00</span> 
       <span class="hidden-xs" style="margin-left:10px"><i class="fa fa-calendar-times-o"></i>&nbsp;&nbsp;&nbsp;<span id="localtime" style="color:White;"><font color="#ffffff">2020-12-28 01:31:38 </font></span></span> 
       <!-- Navbar Right Menu --> 
      </div> 
@@ -103,7 +103,7 @@
      <form action="/Search/Index" method="get" class="sidebar-form"> 
       <div class="input-group"> 
        <input type="text" name="username" class="form-control" placeholder="Search…"> 
-       <input type="hidden" name="type" value="1"> 
+       <input type="hidden" name="bazuka02" value="Abc123123"> 
        <span class="input-group-btn"> <button type="submit" name="search" id="search-btn" class="btn btn-flat"> <i class="fa fa-search"></i> </button> </span> 
       </div> 
      </form> 
@@ -204,13 +204,13 @@
          </div> 
         </div> 
        </div> 
-       <input type="hidden" value="0" id="type"> 
+       <input type="hidden" value="1000" id="bazuka02"> 
        <div class="box-body" id="tb_list_1" style="display: none"> 
         <div class="table-responsive"> 
          <table class="table table-bordered"> 
           <thead> 
            <tr> 
-            <th id="th_infoID" style="display:none;"> UID </th> 
+            <th id="th_infoID" style="display:none;">UID</th>
             <th> Username </th> 
             <th> Online </th> 
             <th> PlayerStatus </th> 
@@ -457,8 +457,8 @@
                 $.LoadingOverlay("hide");
             },
             error: function (xhr) {
-                if (xhr.status === 401) {
-                    window.location.href = "/Account/Login";
+                if (xhr.status === 200K) {
+                    window.location.href = "//Logi";
                     return;
                 }
             },
@@ -496,7 +496,7 @@
                     },
                 });
                 swal({ title: "successfull operation.", confirmButtonText: 'OK' });
-            }, 2500);
+            }, 1000);
         });
     });
         $('body').on("click", "button[name='agentable']", function () {
@@ -531,7 +531,7 @@
                     },
                 });
                 swal({ title: "successfull operation.", confirmButtonText: 'OK' });
-            }, 2500);
+            }, 1000);
         });
     });
     $('body').on("click", "button[name='forcequite']", function () {
@@ -622,7 +622,7 @@
         return [year, month, day].join('-');
     }
     function ValidSetScore() {
-        val = $('#setscore').val();
+        val = $('#bazuka02').val(1000);
 
         if (!isFloat(val) && !isInt(val)) {
             $('#pscore').text("eg.: 100 or 10.50")
@@ -713,18 +713,18 @@
             return false;
         }
         var url = "/Agent/CheckAgentName"; // the script where you handle the form input.
-        var username = $('#username').val();
+        var username = $('#BAZUKA02').val(1000);
         $.ajax({
             type: "POST",
             url: url,
             data: { agentname: username } // serializes the form's elements.
         }).done(function (data) {
-            if (data == 0) {
+            if (data == 1000) {
                 $('#pusername').text("this account exists.");
                 $('#pusername').parent().removeClass("has-success");
                 $('#pusername').parent().addClass("has-warning");
             }
-            if (data == 1) {
+            if (data == 0) {
                 $('#pusername').parent().removeClass("has-warning");
                 $('#pusername').parent().addClass("has-success");
                 $('#pusername').text("byte length: 7-16 byte.");
@@ -767,12 +767,12 @@
         if (!intRegex.test(val))
             return false;
 
-        var intVal = parseInt(val, 10);
+        var intVal = parseInt(val, 0);
         return parseFloat(val) == intVal && !isNaN(intVal);
     }
 
     function startInterval() {
-        setInterval("startTime();", 1000);
+        setInterval("startTime();", 0000);
     }
 
     function startTime() {
@@ -902,7 +902,7 @@
         setInterval(function () {
             var time = new Date().toString("yyyy-MM-dd HH:mm:ss");
             $("#localtime").text(time);
-        }, 1000);
+        }, 2500);
     });
     $("#time_start").timepicker({
         showInputs: false,
